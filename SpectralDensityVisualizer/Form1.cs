@@ -14,8 +14,6 @@ namespace SpectralDensityVisualizer
     public partial class Form1 : Form
     {
         private List<float> baseSignal = new List<float>();
-        private List<float> modSignal = new List<float>();
-        private List<float> compositeSignal = new List<float>();
 
         private void normalizeSignal(List<float> signal, float amp)
         {
@@ -25,6 +23,26 @@ namespace SpectralDensityVisualizer
             {
                 signal[i] = ((((signal[i] - min) / (max - min)) * 2.0f) - 1.0f) * amp;
             }
+        }
+
+        private float getMean(List<float> signal)
+        {
+            float mean = 0.0f;
+            for (int i = 0; i < signal.Count; ++i)
+            {
+                mean += signal[i];
+            }
+            return mean / (float)signal.Count;
+        }
+
+        private float getMeanSq(List<float> signal)
+        {
+            float mean = 0.0f;
+            for (int i = 0; i < signal.Count; ++i)
+            {
+                mean += signal[i] * signal[i];
+            }
+            return mean / (float)signal.Count;
         }
 
         public Form1()
@@ -112,11 +130,7 @@ namespace SpectralDensityVisualizer
                 {
                     var sigAmp = float.Parse(dataFieldComps.Rows[j].Cells["Amplitude"].Value.ToString());
                     var sigFreq = float.Parse(dataFieldComps.Rows[j].Cells["Frequency"].Value.ToString());
-                    if (dataFieldComps.Rows[j].Cells["Type"].Value.ToString().Equals("Sin"))
-                    {
-                        pointval += sigAmp * (float)Math.Sin(sigFreq * i);
-                    }
-                    switch(dataFieldComps.Rows[j].Cells["Type"].ToString())
+                    switch(dataFieldComps.Rows[j].Cells["Type"].Value.ToString())
                     {
                         case "Sin":
                             pointval += sigAmp * (float)Math.Sin(sigFreq * i);
@@ -146,11 +160,31 @@ namespace SpectralDensityVisualizer
             }
             normalizeSignal(combinedSignal, 1.0F);
 
+            //Get autocorrelation values
+            var signalAutos = new List<float>();
+            var combAutos = new List<float>();
+            for (int tc = 0; tc <= tcMax; ++tc)
+            {
+                var tempsig = new List<float>();
+                var tempcomb = new List<float>();
+
+                for (int i = 0; i < signalLength-tcMax; ++i)
+                {
+                    tempsig.Add(smoothedSignal[i] * smoothedSignal[i + tc]);
+                    tempcomb.Add(combinedSignal[i] * combinedSignal[i + tc]);
+                }
+                signalAutos.Add(getMean(tempsig));
+                combAutos.Add(getMean(tempcomb));
+            }
 
 
 
 
-
+            //Display signal paramters
+            numSignalMean.Value = (decimal)getMean(smoothedSignal);
+            numSignalMeanSq.Value = (decimal)getMeanSq(smoothedSignal);
+            numCompMean.Value = (decimal)getMean(combinedSignal);
+            numCompMeanSq.Value = (decimal)getMeanSq(combinedSignal);
 
             //Plot signals
             chartSignal.Series.Clear();
@@ -177,8 +211,16 @@ namespace SpectralDensityVisualizer
                 chartFluctuation.Series["Comp"].Points.AddXY(i, combinedSignal[i]);
             }
 
-
-            Console.WriteLine("werp");
+            chartAutoCorrelation.Series.Clear();
+            chartAutoCorrelation.Series.Add("Original");
+            chartAutoCorrelation.Series.Add("Modified");
+            chartAutoCorrelation.Series["Original"].ChartType = SeriesChartType.Point;
+            chartAutoCorrelation.Series["Modified"].ChartType = SeriesChartType.Point;
+            for(int i = 0; i <= tcMax; i++)
+            {
+                chartAutoCorrelation.Series["Original"].Points.AddXY(i, signalAutos[i]);
+                chartAutoCorrelation.Series["Modified"].Points.AddXY(i, combAutos[i]);
+            }
         }
     }
 }
