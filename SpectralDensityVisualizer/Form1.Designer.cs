@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.numSignalLength = new System.Windows.Forms.NumericUpDown();
             this.numTcMax = new System.Windows.Forms.NumericUpDown();
             this.numSmoothingFactor = new System.Windows.Forms.NumericUpDown();
@@ -73,6 +76,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numCompMeanSq = new System.Windows.Forms.NumericUpDown();
             this.numSignalMeanSq = new System.Windows.Forms.NumericUpDown();
+            this.tabPageFFT = new System.Windows.Forms.TabPage();
+            this.chartFFT = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numFFTZeroFill = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTcMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSmoothingFactor)).BeginInit();
@@ -92,6 +99,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCompMean)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMeanSq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMeanSq)).BeginInit();
+            this.tabPageFFT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).BeginInit();
             this.SuspendLayout();
             // 
             // numSignalLength
@@ -211,6 +221,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.numFFTZeroFill);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.numTruncBuff);
             this.groupBox1.Controls.Add(this.label3);
@@ -221,7 +233,7 @@
             this.groupBox1.Controls.Add(this.numSignalLength);
             this.groupBox1.Location = new System.Drawing.Point(12, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 128);
+            this.groupBox1.Size = new System.Drawing.Size(246, 165);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Signal Parameters";
@@ -291,7 +303,7 @@
             this.groupBox2.Controls.Add(this.numFieldAmp);
             this.groupBox2.Controls.Add(this.dataFieldComps);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(12, 155);
+            this.groupBox2.Location = new System.Drawing.Point(12, 192);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(292, 288);
             this.groupBox2.TabIndex = 13;
@@ -300,7 +312,7 @@
             // 
             // buttonSimulate
             // 
-            this.buttonSimulate.Location = new System.Drawing.Point(12, 449);
+            this.buttonSimulate.Location = new System.Drawing.Point(12, 491);
             this.buttonSimulate.Name = "buttonSimulate";
             this.buttonSimulate.Size = new System.Drawing.Size(292, 59);
             this.buttonSimulate.TabIndex = 14;
@@ -311,7 +323,7 @@
             // checkBoxRepopSeed
             // 
             this.checkBoxRepopSeed.AutoSize = true;
-            this.checkBoxRepopSeed.Location = new System.Drawing.Point(12, 514);
+            this.checkBoxRepopSeed.Location = new System.Drawing.Point(12, 558);
             this.checkBoxRepopSeed.Name = "checkBoxRepopSeed";
             this.checkBoxRepopSeed.Size = new System.Drawing.Size(147, 17);
             this.checkBoxRepopSeed.TabIndex = 15;
@@ -322,6 +334,7 @@
             // 
             this.tabGraphs.Controls.Add(this.tabPageSignals);
             this.tabGraphs.Controls.Add(this.tabPageAutoCorr);
+            this.tabGraphs.Controls.Add(this.tabPageFFT);
             this.tabGraphs.Location = new System.Drawing.Point(365, 21);
             this.tabGraphs.Name = "tabGraphs";
             this.tabGraphs.SelectedIndex = 0;
@@ -345,16 +358,16 @@
             // 
             this.chartFluctuation.BorderlineColor = System.Drawing.Color.Black;
             this.chartFluctuation.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chartFluctuation.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartFluctuation.Legends.Add(legend1);
+            chartArea6.Name = "ChartArea1";
+            this.chartFluctuation.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chartFluctuation.Legends.Add(legend6);
             this.chartFluctuation.Location = new System.Drawing.Point(0, 394);
             this.chartFluctuation.Name = "chartFluctuation";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartFluctuation.Series.Add(series1);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chartFluctuation.Series.Add(series6);
             this.chartFluctuation.Size = new System.Drawing.Size(600, 200);
             this.chartFluctuation.TabIndex = 2;
             this.chartFluctuation.Text = "chart3";
@@ -363,16 +376,16 @@
             // 
             this.chartField.BorderlineColor = System.Drawing.Color.Black;
             this.chartField.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chartField.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartField.Legends.Add(legend2);
+            chartArea7.Name = "ChartArea1";
+            this.chartField.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chartField.Legends.Add(legend7);
             this.chartField.Location = new System.Drawing.Point(0, 200);
             this.chartField.Name = "chartField";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartField.Series.Add(series2);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chartField.Series.Add(series7);
             this.chartField.Size = new System.Drawing.Size(600, 200);
             this.chartField.TabIndex = 1;
             this.chartField.Text = "chart2";
@@ -381,16 +394,16 @@
             // 
             this.chartSignal.BorderlineColor = System.Drawing.Color.Black;
             this.chartSignal.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea3.Name = "ChartArea1";
-            this.chartSignal.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartSignal.Legends.Add(legend3);
+            chartArea8.Name = "ChartArea1";
+            this.chartSignal.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chartSignal.Legends.Add(legend8);
             this.chartSignal.Location = new System.Drawing.Point(0, 1);
             this.chartSignal.Name = "chartSignal";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartSignal.Series.Add(series3);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chartSignal.Series.Add(series8);
             this.chartSignal.Size = new System.Drawing.Size(600, 200);
             this.chartSignal.TabIndex = 0;
             this.chartSignal.Text = "chart1";
@@ -408,16 +421,16 @@
             // 
             // chartAutoCorrelation
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartAutoCorrelation.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartAutoCorrelation.Legends.Add(legend4);
+            chartArea9.Name = "ChartArea1";
+            this.chartAutoCorrelation.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chartAutoCorrelation.Legends.Add(legend9);
             this.chartAutoCorrelation.Location = new System.Drawing.Point(6, 6);
             this.chartAutoCorrelation.Name = "chartAutoCorrelation";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartAutoCorrelation.Series.Add(series4);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chartAutoCorrelation.Series.Add(series9);
             this.chartAutoCorrelation.Size = new System.Drawing.Size(588, 588);
             this.chartAutoCorrelation.TabIndex = 0;
             this.chartAutoCorrelation.Text = "chart1";
@@ -430,7 +443,7 @@
             0,
             0,
             327680});
-            this.numSignalMean.Location = new System.Drawing.Point(69, 557);
+            this.numSignalMean.Location = new System.Drawing.Point(69, 596);
             this.numSignalMean.Minimum = new decimal(new int[] {
             100,
             0,
@@ -444,7 +457,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 559);
+            this.label6.Location = new System.Drawing.Point(24, 598);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 18;
@@ -458,7 +471,7 @@
             0,
             0,
             327680});
-            this.numCompMean.Location = new System.Drawing.Point(69, 583);
+            this.numCompMean.Location = new System.Drawing.Point(69, 622);
             this.numCompMean.Minimum = new decimal(new int[] {
             100,
             0,
@@ -472,7 +485,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 585);
+            this.label7.Location = new System.Drawing.Point(26, 624);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 20;
@@ -481,7 +494,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(77, 541);
+            this.label8.Location = new System.Drawing.Point(77, 580);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 21;
@@ -490,7 +503,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(156, 541);
+            this.label9.Location = new System.Drawing.Point(156, 580);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 24;
@@ -504,7 +517,7 @@
             0,
             0,
             327680});
-            this.numCompMeanSq.Location = new System.Drawing.Point(149, 583);
+            this.numCompMeanSq.Location = new System.Drawing.Point(149, 622);
             this.numCompMeanSq.Minimum = new decimal(new int[] {
             100,
             0,
@@ -523,7 +536,7 @@
             0,
             0,
             327680});
-            this.numSignalMeanSq.Location = new System.Drawing.Point(149, 557);
+            this.numSignalMeanSq.Location = new System.Drawing.Point(149, 596);
             this.numSignalMeanSq.Minimum = new decimal(new int[] {
             100,
             0,
@@ -533,6 +546,59 @@
             this.numSignalMeanSq.ReadOnly = true;
             this.numSignalMeanSq.Size = new System.Drawing.Size(74, 20);
             this.numSignalMeanSq.TabIndex = 22;
+            // 
+            // tabPageFFT
+            // 
+            this.tabPageFFT.Controls.Add(this.chartFFT);
+            this.tabPageFFT.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFFT.Name = "tabPageFFT";
+            this.tabPageFFT.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFFT.Size = new System.Drawing.Size(600, 600);
+            this.tabPageFFT.TabIndex = 2;
+            this.tabPageFFT.Text = "FFT";
+            this.tabPageFFT.UseVisualStyleBackColor = true;
+            // 
+            // chartFFT
+            // 
+            chartArea10.Name = "ChartArea1";
+            this.chartFFT.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chartFFT.Legends.Add(legend10);
+            this.chartFFT.Location = new System.Drawing.Point(6, 6);
+            this.chartFFT.Name = "chartFFT";
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chartFFT.Series.Add(series10);
+            this.chartFFT.Size = new System.Drawing.Size(588, 588);
+            this.chartFFT.TabIndex = 1;
+            this.chartFFT.Text = "chart1";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(33, 127);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "FFT Zero Fill:";
+            // 
+            // numFFTZeroFill
+            // 
+            this.numFFTZeroFill.Location = new System.Drawing.Point(108, 125);
+            this.numFFTZeroFill.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numFFTZeroFill.Name = "numFFTZeroFill";
+            this.numFFTZeroFill.Size = new System.Drawing.Size(120, 20);
+            this.numFFTZeroFill.TabIndex = 9;
+            this.numFFTZeroFill.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
@@ -575,6 +641,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCompMean)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMeanSq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMeanSq)).EndInit();
+            this.tabPageFFT.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -614,6 +683,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown numCompMeanSq;
         private System.Windows.Forms.NumericUpDown numSignalMeanSq;
+        private System.Windows.Forms.TabPage tabPageFFT;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartFFT;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numFFTZeroFill;
     }
 }
 

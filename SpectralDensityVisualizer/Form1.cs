@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MathNet.Numerics.IntegralTransforms;
+using MathNet.Numerics;
 
 namespace SpectralDensityVisualizer
 {
@@ -84,7 +86,16 @@ namespace SpectralDensityVisualizer
             chartAutoCorrelation.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartAutoCorrelation.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
             chartAutoCorrelation.ChartAreas[0].AxisX.Title = "Tc";
-            chartAutoCorrelation.ChartAreas[0].AxisY.Title = " ";
+            chartAutoCorrelation.ChartAreas[0].AxisY.Title = "Int";
+
+            chartFFT.ChartAreas[0].AxisY.IsStartedFromZero = false;
+            chartFFT.ChartAreas[0].AxisX.IsStartedFromZero = false;
+            chartFFT.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
+            chartFFT.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            chartFFT.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            chartFFT.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+            chartFFT.ChartAreas[0].AxisX.Title = "Frequency";
+            chartFFT.ChartAreas[0].AxisY.Title = "Int";
         }
 
         private void buttonSimulate_Click(object sender, EventArgs e)
@@ -95,13 +106,14 @@ namespace SpectralDensityVisualizer
             var smoothingFactor = (float)numSmoothingFactor.Value;
             var truncatedBuffer = (int)numTruncBuff.Value;
             var fieldAmplitude = (float)numFieldAmp.Value;
+            var fftZeroFill = (int)numFFTZeroFill.Value;
 
             //Check if we need to repopulate the base random signal
-            if(baseSignal.Count() == 0 || checkBoxRepopSeed.Checked)
+            if (baseSignal.Count() == 0 || checkBoxRepopSeed.Checked)
             {
                 var random = new Random();
                 baseSignal = new List<float>();
-                for(int i = 0; i < (signalLength + truncatedBuffer + 1); ++i)
+                for (int i = 0; i < (signalLength + truncatedBuffer + 1); ++i)
                 {
                     baseSignal.Add(((float)random.NextDouble() * 2.0f) - 1.0f);
                 }
@@ -110,7 +122,7 @@ namespace SpectralDensityVisualizer
 
             //Smooth the signal values using exponential smoothing
             var smoothedSignal = new List<float>(baseSignal);
-            for(int i = 1; i < (signalLength + truncatedBuffer + 1); ++i)
+            for (int i = 1; i < (signalLength + truncatedBuffer + 1); ++i)
             {
                 smoothedSignal[i] = (smoothingFactor * smoothedSignal[i]) + ((1 - smoothingFactor) * smoothedSignal[i - 1]);
             }
@@ -123,14 +135,14 @@ namespace SpectralDensityVisualizer
 
             //Generate the modifying field signal
             var modSignal = new List<float>();
-            for(int i = 0; i < signalLength; ++i)
+            for (int i = 0; i < signalLength; ++i)
             {
                 var pointval = 0.0f;
-                for(int j = 0; j < dataFieldComps.Rows.Count - 1; ++j)
+                for (int j = 0; j < dataFieldComps.Rows.Count - 1; ++j)
                 {
                     var sigAmp = float.Parse(dataFieldComps.Rows[j].Cells["Amplitude"].Value.ToString());
                     var sigFreq = float.Parse(dataFieldComps.Rows[j].Cells["Frequency"].Value.ToString());
-                    switch(dataFieldComps.Rows[j].Cells["Type"].Value.ToString())
+                    switch (dataFieldComps.Rows[j].Cells["Type"].Value.ToString())
                     {
                         case "Sin":
                             pointval += sigAmp * (float)Math.Sin(sigFreq * i);
@@ -154,7 +166,7 @@ namespace SpectralDensityVisualizer
 
             //Combine the smoothed signal and the modifying signal
             var combinedSignal = new List<float>();
-            for(int i = 0; i < signalLength; ++i)
+            for (int i = 0; i < signalLength; ++i)
             {
                 combinedSignal.Add(modSignal[i] + smoothedSignal[i]);
             }
@@ -168,7 +180,7 @@ namespace SpectralDensityVisualizer
                 var tempsig = new List<float>();
                 var tempcomb = new List<float>();
 
-                for (int i = 0; i < signalLength-tcMax; ++i)
+                for (int i = 0; i < signalLength - tcMax; ++i)
                 {
                     tempsig.Add(smoothedSignal[i] * smoothedSignal[i + tc]);
                     tempcomb.Add(combinedSignal[i] * combinedSignal[i + tc]);
@@ -177,8 +189,24 @@ namespace SpectralDensityVisualizer
                 combAutos.Add(getMean(tempcomb));
             }
 
+            //Get Fourier Transforms
+            var signalComplex = new Complex32[signalLength + fftZeroFill];
+            var combComplex = new Complex32[signalLength + fftZeroFill];
 
+            for (int i = 0; i < signalLength; ++i)
+            {
+                signalComplex[i] = new Complex32(smoothedSignal[i], 0);
+                combComplex[i] = new Complex32(combinedSignal[i], 0);
+            }
 
+            for (int i = 0; i < fftZeroFill; ++i)
+            {
+                signalComplex[i + signalLength] = new Complex32(0, 0);
+                combComplex[i + signalLength] = new Complex32(0, 0);
+            }
+
+            Fourier.Forward(signalComplex, FourierOptions.Matlab);
+            Fourier.Forward(combComplex, FourierOptions.Matlab);
 
             //Display signal paramters
             numSignalMean.Value = (decimal)getMean(smoothedSignal);
@@ -221,6 +249,18 @@ namespace SpectralDensityVisualizer
                 chartAutoCorrelation.Series["Original"].Points.AddXY(i, signalAutos[i]);
                 chartAutoCorrelation.Series["Modified"].Points.AddXY(i, combAutos[i]);
             }
+
+            chartFFT.Series.Clear();
+            chartFFT.Series.Add("Original");
+            chartFFT.Series.Add("Modified");
+            chartFFT.Series["Original"].ChartType = SeriesChartType.Line;
+            chartFFT.Series["Modified"].ChartType = SeriesChartType.Line;
+            for (int i = 0; i < (signalLength + fftZeroFill)/2; i++)
+            {
+                chartFFT.Series["Original"].Points.AddXY((float)i / (float)(signalLength + fftZeroFill), signalComplex[i].Real);
+                chartFFT.Series["Modified"].Points.AddXY((float)i / (float)(signalLength + fftZeroFill), combComplex[i].Real);
+            }
+
         }
     }
 }
