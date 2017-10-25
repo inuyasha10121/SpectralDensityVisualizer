@@ -58,7 +58,7 @@ namespace SpectralDensityVisualizer
             chartSignal.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chartSignal.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartSignal.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            chartSignal.ChartAreas[0].AxisX.Title = "Time";
+            chartSignal.ChartAreas[0].AxisX.Title = "Time (ms)";
             chartSignal.ChartAreas[0].AxisY.Title = "Intensity";
 
             chartField.ChartAreas[0].AxisY.IsStartedFromZero = false;
@@ -67,7 +67,7 @@ namespace SpectralDensityVisualizer
             chartField.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chartField.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartField.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            chartField.ChartAreas[0].AxisX.Title = "Time";
+            chartField.ChartAreas[0].AxisX.Title = "Time (ms)";
             chartField.ChartAreas[0].AxisY.Title = "Intensity";
 
             chartFluctuation.ChartAreas[0].AxisY.IsStartedFromZero = false;
@@ -76,7 +76,7 @@ namespace SpectralDensityVisualizer
             chartFluctuation.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chartFluctuation.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartFluctuation.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            chartFluctuation.ChartAreas[0].AxisX.Title = "Time";
+            chartFluctuation.ChartAreas[0].AxisX.Title = "Time (ms)";
             chartFluctuation.ChartAreas[0].AxisY.Title = "Intensity";
 
             chartAutoCorrelation.ChartAreas[0].AxisY.IsStartedFromZero = false;
@@ -86,7 +86,7 @@ namespace SpectralDensityVisualizer
             chartAutoCorrelation.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartAutoCorrelation.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
             chartAutoCorrelation.ChartAreas[0].AxisX.Title = "Tc";
-            chartAutoCorrelation.ChartAreas[0].AxisY.Title = "Int";
+            chartAutoCorrelation.ChartAreas[0].AxisY.Title = "Intensity";
 
             chartFFT.ChartAreas[0].AxisY.IsStartedFromZero = false;
             chartFFT.ChartAreas[0].AxisX.IsStartedFromZero = false;
@@ -94,8 +94,8 @@ namespace SpectralDensityVisualizer
             chartFFT.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chartFFT.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chartFFT.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            chartFFT.ChartAreas[0].AxisX.Title = "Frequency";
-            chartFFT.ChartAreas[0].AxisY.Title = "Int";
+            chartFFT.ChartAreas[0].AxisX.Title = "Frequency (Hz)";
+            chartFFT.ChartAreas[0].AxisY.Title = "Intensity";
         }
 
         private void buttonSimulate_Click(object sender, EventArgs e)
@@ -145,10 +145,10 @@ namespace SpectralDensityVisualizer
                     switch (dataFieldComps.Rows[j].Cells["Type"].Value.ToString())
                     {
                         case "Sin":
-                            pointval += sigAmp * (float)Math.Sin(sigFreq * i);
+                            pointval += sigAmp * (float)Math.Sin(sigFreq * ((float)i / 1000.0) * 2.0 * Math.PI);
                             break;
                         case "Cos":
-                            pointval += sigAmp * (float)Math.Cos(sigFreq * i);
+                            pointval += sigAmp * (float)Math.Cos(sigFreq * ((float)i / 1000.0) * 2.0 * Math.PI);
                             break;
                         default:
                             pointval += 0.0f;
@@ -208,6 +208,8 @@ namespace SpectralDensityVisualizer
             Fourier.Forward(signalComplex, FourierOptions.Matlab);
             Fourier.Forward(combComplex, FourierOptions.Matlab);
 
+            var fftscale = Fourier.FrequencyScale(combComplex.Length, 1000.0);
+
             //Display signal paramters
             numSignalMean.Value = (decimal)getMean(smoothedSignal);
             numSignalMeanSq.Value = (decimal)getMeanSq(smoothedSignal);
@@ -257,8 +259,43 @@ namespace SpectralDensityVisualizer
             chartFFT.Series["Modified"].ChartType = SeriesChartType.Line;
             for (int i = 0; i < (signalLength + fftZeroFill)/2; i++)
             {
-                chartFFT.Series["Original"].Points.AddXY((float)i / (float)(signalLength + fftZeroFill), signalComplex[i].Real);
-                chartFFT.Series["Modified"].Points.AddXY((float)i / (float)(signalLength + fftZeroFill), combComplex[i].Real);
+                chartFFT.Series["Original"].Points.AddXY((float)fftscale[i], signalComplex[i].Real);
+                chartFFT.Series["Modified"].Points.AddXY((float)fftscale[i], combComplex[i].Real);
+            }
+
+        }
+
+        //Taken/slightly modified from: https://stackoverflow.com/questions/10648828/see-values-of-chart-points-when-the-mouse-is-on-points
+        Point? prevPosition = null;
+        private void chartFFT_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;
+            if (prevPosition.HasValue && pos == prevPosition.Value)
+                return;
+            toolTip1.RemoveAll();
+            prevPosition = pos;
+            var results = chartFFT.HitTest(pos.X, pos.Y, false,
+                                            ChartElementType.DataPoint);
+            foreach (var result in results)
+            {
+                if (result.ChartElementType == ChartElementType.DataPoint)
+                {
+                    var label = result.Series.Name;
+                    var prop = result.Object as DataPoint;
+                    if (prop != null)
+                    {
+                        var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
+                        var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
+
+                        // check if the cursor is really close to the point (2 pixels around the point)
+                        if (Math.Abs(pos.X - pointXPixel) < 2 &&
+                            Math.Abs(pos.Y - pointYPixel) < 2)
+                        {
+                            toolTip1.Show(label + " (" + prop.XValue + "," + prop.YValues[0] + ")", this.chartFFT,
+                                            pos.X, pos.Y - 15);
+                        }
+                    }
+                }
             }
 
         }

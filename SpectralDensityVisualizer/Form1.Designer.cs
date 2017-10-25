@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea19 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend19 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea20 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend20 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.numSignalLength = new System.Windows.Forms.NumericUpDown();
             this.numTcMax = new System.Windows.Forms.NumericUpDown();
             this.numSmoothingFactor = new System.Windows.Forms.NumericUpDown();
@@ -52,12 +53,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numTruncBuff = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numFFTZeroFill = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.numFieldAmp = new System.Windows.Forms.NumericUpDown();
             this.dataFieldComps = new System.Windows.Forms.DataGridView();
-            this.Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Amplitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonSimulate = new System.Windows.Forms.Button();
             this.checkBoxRepopSeed = new System.Windows.Forms.CheckBox();
@@ -68,6 +68,8 @@
             this.chartSignal = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPageAutoCorr = new System.Windows.Forms.TabPage();
             this.chartAutoCorrelation = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPageFFT = new System.Windows.Forms.TabPage();
+            this.chartFFT = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.numSignalMean = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numCompMean = new System.Windows.Forms.NumericUpDown();
@@ -76,15 +78,20 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numCompMeanSq = new System.Windows.Forms.NumericUpDown();
             this.numSignalMeanSq = new System.Windows.Forms.NumericUpDown();
-            this.tabPageFFT = new System.Windows.Forms.TabPage();
-            this.chartFFT = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numFFTZeroFill = new System.Windows.Forms.NumericUpDown();
+            this.Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Amplitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTcMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSmoothingFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTruncBuff)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFieldAmp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFieldComps)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -95,13 +102,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartSignal)).BeginInit();
             this.tabPageAutoCorr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartAutoCorrelation)).BeginInit();
+            this.tabPageFFT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMean)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMean)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMeanSq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMeanSq)).BeginInit();
-            this.tabPageFFT.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numSignalLength
@@ -231,21 +238,47 @@
             this.groupBox1.Controls.Add(this.numSmoothingFactor);
             this.groupBox1.Controls.Add(this.numTcMax);
             this.groupBox1.Controls.Add(this.numSignalLength);
-            this.groupBox1.Location = new System.Drawing.Point(12, 21);
+            this.groupBox1.Location = new System.Drawing.Point(12, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 165);
+            this.groupBox1.Size = new System.Drawing.Size(246, 153);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Signal Parameters";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(33, 127);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "FFT Zero Fill:";
+            // 
+            // numFFTZeroFill
+            // 
+            this.numFFTZeroFill.Location = new System.Drawing.Point(108, 125);
+            this.numFFTZeroFill.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numFFTZeroFill.Name = "numFFTZeroFill";
+            this.numFFTZeroFill.Size = new System.Drawing.Size(120, 20);
+            this.numFFTZeroFill.TabIndex = 9;
+            this.numFFTZeroFill.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 33);
+            this.label5.Location = new System.Drawing.Point(19, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Field Amplitude:";
+            this.label5.Text = "Total Amplitude:";
             // 
             // numFieldAmp
             // 
@@ -276,27 +309,6 @@
             this.dataFieldComps.Name = "dataFieldComps";
             this.dataFieldComps.Size = new System.Drawing.Size(268, 220);
             this.dataFieldComps.TabIndex = 12;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type:";
-            this.Type.Items.AddRange(new object[] {
-            "Sin",
-            "Cos"});
-            this.Type.Name = "Type";
-            this.Type.Width = 75;
-            // 
-            // Amplitude
-            // 
-            this.Amplitude.HeaderText = "Amp:";
-            this.Amplitude.Name = "Amplitude";
-            this.Amplitude.Width = 75;
-            // 
-            // Frequency
-            // 
-            this.Frequency.HeaderText = "Freq:";
-            this.Frequency.Name = "Frequency";
-            this.Frequency.Width = 75;
             // 
             // groupBox2
             // 
@@ -358,16 +370,16 @@
             // 
             this.chartFluctuation.BorderlineColor = System.Drawing.Color.Black;
             this.chartFluctuation.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea6.Name = "ChartArea1";
-            this.chartFluctuation.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartFluctuation.Legends.Add(legend6);
+            chartArea16.Name = "ChartArea1";
+            this.chartFluctuation.ChartAreas.Add(chartArea16);
+            legend16.Name = "Legend1";
+            this.chartFluctuation.Legends.Add(legend16);
             this.chartFluctuation.Location = new System.Drawing.Point(0, 394);
             this.chartFluctuation.Name = "chartFluctuation";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chartFluctuation.Series.Add(series6);
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "Series1";
+            this.chartFluctuation.Series.Add(series16);
             this.chartFluctuation.Size = new System.Drawing.Size(600, 200);
             this.chartFluctuation.TabIndex = 2;
             this.chartFluctuation.Text = "chart3";
@@ -376,16 +388,16 @@
             // 
             this.chartField.BorderlineColor = System.Drawing.Color.Black;
             this.chartField.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea7.Name = "ChartArea1";
-            this.chartField.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chartField.Legends.Add(legend7);
+            chartArea17.Name = "ChartArea1";
+            this.chartField.ChartAreas.Add(chartArea17);
+            legend17.Name = "Legend1";
+            this.chartField.Legends.Add(legend17);
             this.chartField.Location = new System.Drawing.Point(0, 200);
             this.chartField.Name = "chartField";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chartField.Series.Add(series7);
+            series17.ChartArea = "ChartArea1";
+            series17.Legend = "Legend1";
+            series17.Name = "Series1";
+            this.chartField.Series.Add(series17);
             this.chartField.Size = new System.Drawing.Size(600, 200);
             this.chartField.TabIndex = 1;
             this.chartField.Text = "chart2";
@@ -394,16 +406,16 @@
             // 
             this.chartSignal.BorderlineColor = System.Drawing.Color.Black;
             this.chartSignal.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea8.Name = "ChartArea1";
-            this.chartSignal.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chartSignal.Legends.Add(legend8);
+            chartArea18.Name = "ChartArea1";
+            this.chartSignal.ChartAreas.Add(chartArea18);
+            legend18.Name = "Legend1";
+            this.chartSignal.Legends.Add(legend18);
             this.chartSignal.Location = new System.Drawing.Point(0, 1);
             this.chartSignal.Name = "chartSignal";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartSignal.Series.Add(series8);
+            series18.ChartArea = "ChartArea1";
+            series18.Legend = "Legend1";
+            series18.Name = "Series1";
+            this.chartSignal.Series.Add(series18);
             this.chartSignal.Size = new System.Drawing.Size(600, 200);
             this.chartSignal.TabIndex = 0;
             this.chartSignal.Text = "chart1";
@@ -421,19 +433,47 @@
             // 
             // chartAutoCorrelation
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartAutoCorrelation.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chartAutoCorrelation.Legends.Add(legend9);
+            chartArea19.Name = "ChartArea1";
+            this.chartAutoCorrelation.ChartAreas.Add(chartArea19);
+            legend19.Name = "Legend1";
+            this.chartAutoCorrelation.Legends.Add(legend19);
             this.chartAutoCorrelation.Location = new System.Drawing.Point(6, 6);
             this.chartAutoCorrelation.Name = "chartAutoCorrelation";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chartAutoCorrelation.Series.Add(series9);
+            series19.ChartArea = "ChartArea1";
+            series19.Legend = "Legend1";
+            series19.Name = "Series1";
+            this.chartAutoCorrelation.Series.Add(series19);
             this.chartAutoCorrelation.Size = new System.Drawing.Size(588, 588);
             this.chartAutoCorrelation.TabIndex = 0;
             this.chartAutoCorrelation.Text = "chart1";
+            // 
+            // tabPageFFT
+            // 
+            this.tabPageFFT.Controls.Add(this.chartFFT);
+            this.tabPageFFT.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFFT.Name = "tabPageFFT";
+            this.tabPageFFT.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFFT.Size = new System.Drawing.Size(600, 600);
+            this.tabPageFFT.TabIndex = 2;
+            this.tabPageFFT.Text = "FFT";
+            this.tabPageFFT.UseVisualStyleBackColor = true;
+            // 
+            // chartFFT
+            // 
+            chartArea20.Name = "ChartArea1";
+            this.chartFFT.ChartAreas.Add(chartArea20);
+            legend20.Name = "Legend1";
+            this.chartFFT.Legends.Add(legend20);
+            this.chartFFT.Location = new System.Drawing.Point(6, 6);
+            this.chartFFT.Name = "chartFFT";
+            series20.ChartArea = "ChartArea1";
+            series20.Legend = "Legend1";
+            series20.Name = "Series1";
+            this.chartFFT.Series.Add(series20);
+            this.chartFFT.Size = new System.Drawing.Size(588, 588);
+            this.chartFFT.TabIndex = 1;
+            this.chartFFT.Text = "chart1";
+            this.chartFFT.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartFFT_MouseMove);
             // 
             // numSignalMean
             // 
@@ -547,58 +587,57 @@
             this.numSignalMeanSq.Size = new System.Drawing.Size(74, 20);
             this.numSignalMeanSq.TabIndex = 22;
             // 
-            // tabPageFFT
+            // Type
             // 
-            this.tabPageFFT.Controls.Add(this.chartFFT);
-            this.tabPageFFT.Location = new System.Drawing.Point(4, 22);
-            this.tabPageFFT.Name = "tabPageFFT";
-            this.tabPageFFT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFFT.Size = new System.Drawing.Size(600, 600);
-            this.tabPageFFT.TabIndex = 2;
-            this.tabPageFFT.Text = "FFT";
-            this.tabPageFFT.UseVisualStyleBackColor = true;
+            this.Type.HeaderText = "Type:";
+            this.Type.Items.AddRange(new object[] {
+            "Sin",
+            "Cos"});
+            this.Type.Name = "Type";
+            this.Type.Width = 75;
             // 
-            // chartFFT
+            // Amplitude
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chartFFT.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chartFFT.Legends.Add(legend10);
-            this.chartFFT.Location = new System.Drawing.Point(6, 6);
-            this.chartFFT.Name = "chartFFT";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.chartFFT.Series.Add(series10);
-            this.chartFFT.Size = new System.Drawing.Size(588, 588);
-            this.chartFFT.TabIndex = 1;
-            this.chartFFT.Text = "chart1";
+            this.Amplitude.HeaderText = "Amp:";
+            this.Amplitude.Name = "Amplitude";
+            this.Amplitude.Width = 75;
             // 
-            // label10
+            // Frequency
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(33, 127);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 13);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "FFT Zero Fill:";
+            this.Frequency.HeaderText = "Freq (Hz):";
+            this.Frequency.Name = "Frequency";
+            this.Frequency.Width = 75;
             // 
-            // numFFTZeroFill
+            // menuStrip1
             // 
-            this.numFFTZeroFill.Location = new System.Drawing.Point(108, 125);
-            this.numFFTZeroFill.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numFFTZeroFill.Name = "numFFTZeroFill";
-            this.numFFTZeroFill.Size = new System.Drawing.Size(120, 20);
-            this.numFFTZeroFill.TabIndex = 9;
-            this.numFFTZeroFill.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(989, 24);
+            this.menuStrip1.TabIndex = 25;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.openToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
             // 
             // Form1
             // 
@@ -618,6 +657,7 @@
             this.Controls.Add(this.buttonSimulate);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.numSignalLength)).EndInit();
@@ -626,6 +666,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTruncBuff)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFieldAmp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFieldComps)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -637,13 +678,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartSignal)).EndInit();
             this.tabPageAutoCorr.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartAutoCorrelation)).EndInit();
+            this.tabPageFFT.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMean)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMean)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompMeanSq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSignalMeanSq)).EndInit();
-            this.tabPageFFT.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartFFT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFFTZeroFill)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,9 +704,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numFieldAmp;
         private System.Windows.Forms.DataGridView dataFieldComps;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amplitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Frequency;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonSimulate;
         private System.Windows.Forms.CheckBox checkBoxRepopSeed;
@@ -687,6 +726,14 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartFFT;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numFFTZeroFill;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amplitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Frequency;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 
